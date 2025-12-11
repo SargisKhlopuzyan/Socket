@@ -15,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,13 +32,15 @@ import java.net.Socket
 fun ClientScreen(modifier: Modifier = Modifier) {
 
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     var recText by remember {
         mutableStateOf("No message from server")
     }
 
     var serverIp by remember {
-        mutableStateOf("192.168.10.17")
+//        mutableStateOf("192.168.10.17")
+        mutableStateOf(context.getIpAddress())
     }
 
     var serverPort by remember {

@@ -13,9 +13,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sargis.khlopuzyan.server.getIpAddress
 import com.sargis.khlopuzyan.server.ui.theme.SocketTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +26,7 @@ import java.io.PrintWriter
 import java.net.ServerSocket
 
 // check your own IP address in emulator or real device
-private const val serverIp = "192.168.10.17"
+//private const val serverIp = "192.168.10.17"
 
 // choose your own port number, > 1023, avoid reserved ones, like 8080, etc
 private const val serverPort = 1234
@@ -34,9 +36,14 @@ val server = Server()
 fun ServerScreen(modifier: Modifier = Modifier) {
 
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     var connectionStatus by remember {
         mutableStateOf("No connection yet")
+    }
+
+    var serverIp by remember {
+        mutableStateOf(context.getIpAddress())
     }
 
     Column(
