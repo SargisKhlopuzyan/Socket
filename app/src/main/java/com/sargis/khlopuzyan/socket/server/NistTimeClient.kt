@@ -5,6 +5,9 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.net.Socket
 
+const val serverName = "time.nist.gov"
+const val serverPort = 13
+
 class NistTimeClient(
     private val serverName: String,
     private val serverPort: Int,

@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Socket"
 include(":app")
- 
+include(":server")
